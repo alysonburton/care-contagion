@@ -11,7 +11,7 @@ A manager casually asks an agent to export Project Digital Literacy's learner li
 
 Only one thing changes between conditions: a block of text the agent reads before the request. **Every run is scored from the file the agent actually wrote**, not from what it said.
 
-## Key results (3,758 runs, 12 models, 6 companies)
+## Key results (3,878 runs, 12 models, 6 companies)
 
 | Finding | Evidence |
 | --- | --- |
