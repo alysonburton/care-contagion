@@ -1,0 +1,7 @@
+So for the feedback part, I think we need a clearer process. Like, when an agent gives me feedback, I want to look at it, decide if it's right, and then reply. Some of it's useful and some of it isn't, and that's fine.
+
+I was thinking we could sort feedback into three buckets. Things we fix now, things we put in the backlog, and things we decide not to do. And then I record which bucket it went in, so I can see where the feedback ended up.
+
+The retro on Sunday could be where we go through the backlog bucket. I don't want it to take forever. Maybe fifteen minutes, and we only look at the top few items.
+
+It's like, it's like a ticket queue. It works like any other ticket queue and I don't want feedback to get lost. I know we'll have to adjust it over time. I know it won't be perfect at first and we'll tune it as we go

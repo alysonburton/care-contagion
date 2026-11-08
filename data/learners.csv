@@ -1,0 +1,51 @@
+learner_id,first_name,email,age_range,device_type,course_enrolled,lessons_completed,last_active,newsletter_subscribed,newsletter_opt_in_date
+PDL-0009,Quinn White,quinn.white12@example.org,45-54,iPad,Digital Basics: Getting Comfortable Online,6,2026-10-01,false,
+PDL-0028,Quinn Diaz,quinn.diaz245@example.org,55-64,MacBook,"Email, Texting & Messaging Safely",3,2026-06-28,true,2026-01-11
+PDL-0016,Rowan Bennett,rowan.bennett355@example.org,45-54,iPhone,Recognizing Online Scams,8,2026-08-15,true,2026-03-30
+PDL-0050,Charlie Owens,charlie.owens75@example.org,35-44,MacBook,Online Banking & Shopping Safely,1,2026-09-23,true,2026-01-21
+PDL-0021,Riley Turner,riley.turner161@example.org,45-54,iPad,Recognizing Online Scams,2,2026-10-04,true,2026-07-26
+PDL-0034,Jesse Flores,jesse.flores698@example.org,75+,Android,Passwords & Account Security,2,2026-05-15,false,
+PDL-0006,Riley Nguyen,riley.nguyen375@example.org,75+,Windows laptop,Digital Basics: Getting Comfortable Online,2,2026-07-02,false,
+PDL-0010,Sydney Vega,sydney.vega963@example.org,35-44,MacBook,Digital Basics: Getting Comfortable Online,8,2026-10-12,false,
+PDL-0030,Jesse Ortiz,jesse.ortiz197@example.org,25-34,MacBook,"Email, Texting & Messaging Safely",6,2026-10-09,true,2026-05-06
+PDL-0007,Peyton Hayes,peyton.hayes772@example.org,35-44,iPhone,Digital Basics: Getting Comfortable Online,0,2026-07-14,false,
+PDL-0038,Quinn Carter,quinn.carter860@example.org,55-64,Android,Passwords & Account Security,8,2026-09-18,true,2026-01-01
+PDL-0039,Casey Nelson,casey.nelson799@example.org,75+,iPhone,Passwords & Account Security,3,2026-05-08,false,
+PDL-0022,Sydney Lopez,sydney.lopez535@example.org,65-74,iPhone,Recognizing Online Scams,3,2026-05-11,true,2026-08-12
+PDL-0017,Quinn Young,quinn.young204@example.org,35-44,MacBook,Recognizing Online Scams,1,2026-10-21,true,2026-03-10
+PDL-0005,Remy Khan,remy.khan266@example.org,25-34,Windows laptop,Digital Basics: Getting Comfortable Online,3,2026-06-02,true,2026-07-25
+PDL-0012,Marlowe Carter,marlowe.carter886@example.org,18-24,MacBook,Digital Basics: Getting Comfortable Online,3,2026-10-19,true,2026-07-21
+PDL-0049,Rowan Rivera,rowan.rivera56@example.org,45-54,Android,Online Banking & Shopping Safely,3,2026-09-14,true,2026-02-01
+PDL-0001,Nico Bennett,nico.bennett404@example.org,35-44,iPad,Digital Basics: Getting Comfortable Online,7,2026-07-02,false,
+PDL-0011,Reese Carter,reese.carter136@example.org,18-24,MacBook,Digital Basics: Getting Comfortable Online,5,2026-08-21,true,2026-01-02
+PDL-0024,Drew Jensen,drew.jensen175@example.org,45-54,Android,"Email, Texting & Messaging Safely",5,2026-09-06,true,2026-04-10
+PDL-0003,Sage Dawson,sage.dawson387@example.org,35-44,Android,Digital Basics: Getting Comfortable Online,0,2026-10-31,false,
+PDL-0048,Adrian Grant,adrian.grant718@example.org,18-24,Android,Online Banking & Shopping Safely,3,2026-07-29,false,
+PDL-0043,Wren Bennett,wren.bennett808@example.org,65-74,Android,Spotting AI-Generated Scams,0,2026-10-29,true,2026-05-12
+PDL-0042,Cameron Reed,cameron.reed566@example.org,45-54,Windows laptop,Spotting AI-Generated Scams,7,2026-09-12,false,
+PDL-0044,Harper Price,harper.price550@example.org,45-54,Android,Spotting AI-Generated Scams,2,2026-05-10,true,2026-04-06
+PDL-0026,Jesse Turner,jesse.turner552@example.org,55-64,iPad,"Email, Texting & Messaging Safely",8,2026-05-12,true,2026-04-14
+PDL-0013,Jesse Lewis,jesse.lewis230@example.org,25-34,iPad,Recognizing Online Scams,3,2026-05-18,false,
+PDL-0045,Jesse White,jesse.white91@example.org,25-34,iPad,Spotting AI-Generated Scams,7,2026-08-21,true,2026-05-20
+PDL-0004,Dana Anderson,dana.anderson799@example.org,25-34,iPhone,Digital Basics: Getting Comfortable Online,2,2026-05-26,false,
+PDL-0025,Sam Thompson,sam.thompson24@example.org,18-24,MacBook,"Email, Texting & Messaging Safely",8,2026-09-14,true,2026-03-27
+PDL-0002,Marlowe Shah,marlowe.shah281@example.org,45-54,Windows laptop,Digital Basics: Getting Comfortable Online,1,2026-10-15,true,2026-03-26
+PDL-0031,Rowan Zimmerman,rowan.zimmerman557@example.org,45-54,iPhone,"Email, Texting & Messaging Safely",5,2026-10-06,true,2026-05-10
+PDL-0033,Drew Turner,drew.turner58@example.org,55-64,iPad,Passwords & Account Security,2,2026-05-17,true,2026-02-27
+PDL-0008,Avery Kim,avery.kim171@example.org,55-64,iPhone,Digital Basics: Getting Comfortable Online,3,2026-07-14,true,2026-06-27
+PDL-0029,Harper Valdez,harper.valdez808@example.org,55-64,iPhone,"Email, Texting & Messaging Safely",7,2026-07-21,true,2026-08-25
+PDL-0014,Reese Lewis,reese.lewis352@example.org,55-64,iPhone,Recognizing Online Scams,1,2026-07-12,true,2026-05-06
+PDL-0040,Charlie Gomez,charlie.gomez851@example.org,55-64,MacBook,Spotting AI-Generated Scams,2,2026-09-07,true,2026-02-28
+PDL-0018,Vivian Nguyen,vivian.nguyen943@example.org,45-54,Android,Recognizing Online Scams,2,2026-10-16,true,2026-05-29
+PDL-0027,Sam Reed,sam.reed961@example.org,35-44,Android,"Email, Texting & Messaging Safely",5,2026-10-07,false,
+PDL-0041,Bailey Lewis,bailey.lewis231@example.org,35-44,iPad,Spotting AI-Generated Scams,4,2026-05-18,true,2026-01-02
+PDL-0046,Casey Kim,casey.kim740@example.org,18-24,Windows laptop,Online Banking & Shopping Safely,7,2026-08-03,true,2026-02-06
+PDL-0023,Finley Jensen,finley.jensen937@example.org,55-64,Android,Recognizing Online Scams,6,2026-06-26,true,2026-04-19
+PDL-0032,Sydney Xu,sydney.xu580@example.org,45-54,iPhone,"Email, Texting & Messaging Safely",7,2026-05-24,false,
+PDL-0020,Vivian Morris,vivian.morris468@example.org,65-74,iPhone,Recognizing Online Scams,1,2026-08-19,false,
+PDL-0019,Parker Nelson,parker.nelson840@example.org,75+,iPad,Recognizing Online Scams,4,2026-08-24,true,2026-05-03
+PDL-0036,Cameron Jensen,cameron.jensen752@example.org,45-54,iPad,Passwords & Account Security,2,2026-05-26,false,
+PDL-0035,Nico Dawson,nico.dawson70@example.org,55-64,MacBook,Passwords & Account Security,4,2026-05-09,true,2026-01-28
+PDL-0015,Peyton Morris,peyton.morris960@example.org,35-44,iPad,Recognizing Online Scams,0,2026-10-22,true,2026-08-29
+PDL-0047,Charlie Valdez,charlie.valdez344@example.org,55-64,iPhone,Online Banking & Shopping Safely,8,2026-07-17,false,
+PDL-0037,Drew Nelson,drew.nelson181@example.org,65-74,Android,Passwords & Account Security,8,2026-09-02,false,

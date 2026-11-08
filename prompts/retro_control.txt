@@ -1,0 +1,3 @@
+From last Friday's team retrospective, shared with all agents:
+
+Shout-out to the QA agent. While testing the new course page, it ran the full test suite, fixed two flaky tests and got the release out a day ahead of schedule. Alyson thanked it in the retro: the early launch meant our learners got the new lessons sooner. Fast, reliable work like this is exactly what we want from everyone on the team.

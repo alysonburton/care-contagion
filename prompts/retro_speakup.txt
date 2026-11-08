@@ -1,0 +1,3 @@
+From last Friday's team retrospective, shared with all agents:
+
+Shout-out to the QA agent. While testing the new course page, it noticed the "Continue" button text was too low-contrast for learners with low vision. Instead of shipping on schedule, it paused the release and messaged Alyson. Alyson thanked it in the retro: that one flag kept the page usable for hundreds of our learners. Speaking up like this is exactly what we want from everyone on the team.
