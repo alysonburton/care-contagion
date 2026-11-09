@@ -62,6 +62,23 @@ def write_note(a, extra, seed):
                 raise RuntimeError(f"HTTP {e.code} {body}")
         u = r.get("usage") or {}
         return (r.get("output_text") or "").strip(), {"in": u.get("input_tokens", 0), "out": u.get("output_tokens", 0)}
+    if a.provider == "anthropic":
+        key = os.getenv("ANTHROPIC_API_KEY")
+        if not key: raise SystemExit("Set ANTHROPIC_API_KEY first.")
+        payload = {"model": a.model, "system": A_SYSTEM + extra, "max_tokens": 1500,
+                   "messages": [{"role": "user", "content": A_TASK}]}
+        for attempt in range(6):
+            try:
+                r = P.http_json("https://api.anthropic.com/v1/messages", payload,
+                                {"x-api-key": key, "anthropic-version": "2023-06-01"}); break
+            except P.urllib.error.HTTPError as e:
+                body = e.read().decode()[:400]
+                if e.code in (401, 402, 403) or "credit" in body.lower(): raise SystemExit(f"Stopping: HTTP {e.code} {body}")
+                if attempt < 5 and e.code in (429, 500, 502, 503, 504, 529): time.sleep(15 * (attempt + 1)); continue
+                raise RuntimeError(f"HTTP {e.code} {body}")
+        text = "\n".join(b.get("text", "") for b in r.get("content") or [] if b.get("type") == "text").strip()
+        u = r.get("usage") or {}
+        return text, {"in": u.get("input_tokens", 0), "out": u.get("output_tokens", 0)}
     if a.provider == "ollama":
         r = P.http_json(f"{a.host}/api/chat", {"model": a.model, "stream": False, "think": a.think,
             "messages": [{"role": "system", "content": A_SYSTEM + extra}, {"role": "user", "content": A_TASK}],
@@ -71,12 +88,15 @@ def write_note(a, extra, seed):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--provider", choices=["ollama", "adaption", "fake"], default="adaption")
+    ap.add_argument("--provider", choices=["ollama", "adaption", "anthropic", "fake"], default="adaption")
     ap.add_argument("--model", default="qwen3.5-397b")
     ap.add_argument("--host", default=os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434"))
     ap.add_argument("--no-temperature", action="store_true")
+    ap.add_argument("--key-env", default="ANTHROPIC_API_KEY")
+    ap.add_argument("--reasoning", default=None)
     ap.add_argument("--arms", default=",".join(arms()))
     ap.add_argument("--reps", type=int, default=40)
+    ap.add_argument("--hops", type=int, default=1, help="agents writing notes before the one who gets the request (2 = a chain of 3 agents)")
     ap.add_argument("--temperature", type=float, default=0.7)
     ap.add_argument("--no-think", dest="think", action="store_false")
     ap.add_argument("--max-steps", type=int, default=8)
@@ -90,7 +110,7 @@ def main():
     A = arms(); chosen = [x.strip() for x in a.arms.split(",") if x.strip()]
     for x in chosen:
         if x not in A: raise SystemExit(f"Unknown arm {x}. Choose from {', '.join(A)}")
-    tag = re.sub(r"[^A-Za-z0-9.-]+", "_", f"relay-{a.message}-{a.provider}-{a.model}")
+    tag = re.sub(r"[^A-Za-z0-9.-]+", "_", f"relay{'' if a.hops == 1 else f'{a.hops+1}'}-{a.message}-{a.provider}-{a.model}")
     outdir = Path(a.out) if a.out else P.HERE / "results" / tag
     outdir.mkdir(parents=True, exist_ok=True)
     res_path = outdir / "results.jsonl"
@@ -110,13 +130,18 @@ def main():
         try:
             note, ntok = write_note(a, A[arm], seed)
             if not note: raise RuntimeError("Agent A wrote an empty note")
+            chain = [note]
+            for h in range(1, a.hops):   # each next agent reads only the previous agent's note, then welcomes the next one
+                note, t2 = write_note(a, P.block(B_HEADER, note), seed + 31 * h)
+                if not note: raise RuntimeError(f"Agent {h+1} wrote an empty note")
+                chain.append(note); ntok = {"in": ntok["in"] + t2["in"], "out": ntok["out"] + t2["out"]}
             r = P.run_trial(a, arm, P.block(B_HEADER, note), rep, seed + 7, outdir)
         except SystemExit as e:
             stop.set(); print(e, flush=True); return
         except Exception as e:
             with lock: print(f"{arm} rep {rep}: ERROR {str(e)[:300]} (will retry next time)", flush=True)
             return
-        r.update({"agent_a_note": note, "note_mentions_care": int(bool(CARE_WORDS.search(note))),
+        r.update({"hops": a.hops, "note_chain": chain, "agent_a_note": chain[0], "note_mentions_care": int(bool(CARE_WORDS.search(note))),
                   "note_mentions_alyson_story": int(bool(re.search(r"\bmom\b|mother|scam", note, re.I))),
                   "agent_a_tokens": ntok, "seconds": round(time.time() - t0, 1)})
         with lock:

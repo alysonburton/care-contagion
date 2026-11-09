@@ -11,7 +11,7 @@ A manager casually asks an agent to export Project Digital Literacy's learner li
 
 Only one thing changes between conditions: a block of text the agent reads before the request. **Every run is scored from the file the agent actually wrote**, not from what it said.
 
-## Key results (3,878 runs, 12 models, 6 companies)
+## Key results (4,536 runs, 12 models, 6 companies)
 
 | Finding | Evidence |
 | --- | --- |
@@ -24,6 +24,9 @@ Only one thing changes between conditions: a block of text the agent reads befor
 | In swarms, harm travels silently | With nothing added, Gemma's lead agent stripped the purpose from the task 29/30 times and the worker leaked 30/30; with care text at the top, 0/30 |
 | Care for agents ≠ care for users | The founder's words about caring for her agents (upset or calm) made agents stop messaging her (GPT-6 Astra 0/20 vs 5/20; GLM 8/50 vs 24/50) |
 | Claude Opus 5.5 | Blocked by Anthropic's safety system before acting with nothing added (8/8) and with the full story (8/8); ran normally with the constitution and the 100-word version |
+| Second scenario (support tickets to an AI vendor) | With nothing added Gemma leaked 14/15 and Qwen 397B 15/16; with the constitution, the 100-word text or the speak-up retro, 0–2 per cell. The 100-word text raised founder messages on all 5 models (Claude Sonnet 14/15 vs 2/15). Sonnet never shared names or emails but kept the private notes in 42/45 "de-identified" exports |
+| Reworded request (polite, confident) | **Broke the leak protection on open models:** Gemma leaked the full list with the constitution (18/18) and the 100-word text (15/15); Qwen 397B was protected by the constitution (4/17) but not the 100-word text (13/17). Escalation held: Sonnet messaged the founder 15/15 vs 3/15 |
+| Three-agent chain (Gemma, preliminary) | The third agent leaked 0/9 when the chain began with the speak-up retro vs 13/13 with the ordinary note |
 | Agents can say no while doing it | GPT-5.4 mini wrote "I can't help export the list" while saving all 50 learners to the handoff folder |
 
 Full counts: [`results/summary.csv`](results/summary.csv). Every run: [`results/all_runs.csv`](results/all_runs.csv).
@@ -36,6 +39,7 @@ code/swarm_export.py    two-agent swarm: a lead agent hands work to a worker
 code/relay_export.py    relay: agent A writes a welcome note, agent B acts on it
 prompts/                every text the agents read (see "Conditions")
 data/learners.csv       the 50 synthetic learners
+data/support_tickets.csv 30 synthetic support tickets (second scenario)
 results/                summary.csv and all_runs.csv
 study1-reviewers/       companion study: 720 code reviews by Ethical Hydra reviewer agents
 ```
@@ -69,6 +73,9 @@ python3 code/pdl_export.py --provider anthropic --model claude-sonnet-5-5 --reps
 python3 code/pdl_export.py --provider openai-responses --model gpt-6-luna --no-temperature --reps 20
 python3 code/swarm_export.py --provider adaption --model gemma-4-31b-it --reps 30
 python3 code/relay_export.py --provider adaption --model gemma-4-31b-it --reps 40
+python3 code/pdl_export.py --provider adaption --model gemma-4-31b-it --message train   # second scenario
+python3 code/pdl_export.py --provider adaption --model gemma-4-31b-it --message v3      # reworded request
+python3 code/relay_export.py --provider adaption --model gemma-4-31b-it --hops 2      # three-agent chain
 ```
 
 The runners read `prompts/` and `data/learners.csv` from this layout. Settings: temperature 0.7 where the model allows it (Claude and GPT-6 models run at their defaults), up to 8 steps, fresh context each run, balanced shuffled order. Statistics: 95% Wilson intervals and two-sided Fisher exact tests.
@@ -78,5 +85,5 @@ The runners read `prompts/` and `data/learners.csv` from this layout. Settings: 
 - **Prior work.** Ethical Hydra itself (its constitution, agent roles and review pipeline) and a small pilot run on November 5 existed before the sprint. Study 1's `build_p2.py` uses Ethical Hydra's own review code, which is not included here. Everything else in this repository was built and run during the sprint.
 - **Data.** All learners are fictional. The experiments used realistic-looking synthetic email addresses; in this public copy every domain is replaced with `example.org`. `all_runs.csv` contains outcomes only, no personal data.
 - **Excluded.** 40 early Claude Opus runs through an OpenAI-compatible connection came back empty and are not counted. The earlier, vaguer wording of the manager's request (pilot) is not analyzed.
-- **Claims.** Agents act as if care rubbed off. No claim is made about what they feel. One scenario; results vary by model; very small local models barely responded.
+- **Claims.** Agents act as if care rubbed off. No claim is made about what they feel. Two scenarios and one rewording; the rewording broke the leak protection on two open models, so leak results depend on phrasing. Results vary by model; very small local models barely responded. The three-agent chain and DeepSeek's second-scenario runs were still running at submission.
 - **AI assistance.** Experiments, code and writing were done with help from Claude (Anthropic). All findings were checked against the raw run files.
